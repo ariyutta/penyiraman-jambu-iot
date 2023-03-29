@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "335785631167",
+    "firebase_url": "https://penyiraman-iot-jambu-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "penyiraman-iot-jambu",
+    "storage_bucket": "penyiraman-iot-jambu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335785631167:android:3917f8118ef50e0708150a",
+        "android_client_info": {
+          "package_name": "com.example.flutter_skripsi_arbi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "335785631167-2mtn9d9504kuh4i71djbn2v2j0vd8m8d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3Nu8yRRrDMwH-0tGeYDK57DlRyu_6T2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "335785631167-2mtn9d9504kuh4i71djbn2v2j0vd8m8d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335785631167:android:938cbe4aa0a0284b08150a",
+        "android_client_info": {
+          "package_name": "com.example.penyiraman_jambu_iot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "335785631167-2mtn9d9504kuh4i71djbn2v2j0vd8m8d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3Nu8yRRrDMwH-0tGeYDK57DlRyu_6T2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "335785631167-2mtn9d9504kuh4i71djbn2v2j0vd8m8d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
