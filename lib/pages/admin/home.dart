@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:penyiraman_jambu_iot/controllers/HomeController.dart';
 import 'package:penyiraman_jambu_iot/pages/admin/dashboard.dart';
-import 'package:penyiraman_jambu_iot/pages/admin/data_log.dart';
+import 'package:penyiraman_jambu_iot/pages/admin/aktivitas_log.dart';
 import 'package:penyiraman_jambu_iot/pages/admin/profil.dart';
 
 class MyHome extends StatefulWidget {
@@ -47,7 +47,7 @@ class _MyHomeState extends State<MyHome> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.event_note),
-            label: 'Data Log',
+            label: 'Aktivitas Log',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
@@ -71,7 +71,7 @@ class _MyHomeState extends State<MyHome> {
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.fromLTRB(0, 95, 0, 95),
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage('assets/bg_dashboard.png'),
                         fit: BoxFit.cover),
@@ -130,7 +130,7 @@ class _MyHomeState extends State<MyHome> {
       case 0:
         return Text("Dashboard", style: TextStyle(fontSize: 25));
       case 1:
-        return Text("Data Log", style: TextStyle(fontSize: 25));
+        return Text("Aktivitas Log", style: TextStyle(fontSize: 25));
       case 2:
         return Text("Profil", style: TextStyle(fontSize: 25));
       default:
@@ -139,6 +139,23 @@ class _MyHomeState extends State<MyHome> {
   }
 
   Widget panelIcon() {
+    switch (XselectedIndex) {
+      case 0:
+        return Icon(Icons.dashboard,
+            size: 30, color: Color.fromARGB(255, 221, 235, 255));
+      case 1:
+        return Icon(Icons.event_note,
+            size: 30, color: Color.fromARGB(255, 221, 235, 255));
+      case 2:
+        return Icon(Icons.person,
+            size: 30, color: Color.fromARGB(255, 221, 235, 255));
+      default:
+        return Icon(Icons.dashboard,
+            size: 30, color: Color.fromARGB(255, 221, 235, 255));
+    }
+  }
+
+  Widget panelGambar() {
     switch (XselectedIndex) {
       case 0:
         return Icon(Icons.dashboard,
