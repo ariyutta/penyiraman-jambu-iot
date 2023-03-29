@@ -19,9 +19,9 @@ class ModelSatu {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['SensorDigital'] = this.sensorDigital;
-    data['StatusKeranAir'] = this.statusKeranAir;
-    data['Waktu'] = this.waktu;
+    data['SensorDigital'] = this.sensorDigital.obs;
+    data['StatusKeranAir'] = this.statusKeranAir.obs;
+    data['Waktu'] = this.waktu.obs;
     return data;
   }
 }

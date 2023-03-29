@@ -11,9 +11,6 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  late String emailInput;
-  late String passInput;
-
   @override
   void initState() {
     super.initState();
