@@ -25,3 +25,29 @@ class ModelSatu {
     return data;
   }
 }
+
+class ModelDua {
+  int? sensorDigital;
+  bool? statusKeranAir;
+  String? waktu;
+
+  ModelDua({
+    this.sensorDigital,
+    this.statusKeranAir,
+    this.waktu,
+  });
+
+  ModelDua.fromJson(Map<dynamic, dynamic> json) {
+    sensorDigital = json['SensorDigital'];
+    statusKeranAir = json['StatusKeranAir'];
+    waktu = json['Waktu'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['SensorDigital'] = this.sensorDigital.obs;
+    data['StatusKeranAir'] = this.statusKeranAir.obs;
+    data['Waktu'] = this.waktu.obs;
+    return data;
+  }
+}

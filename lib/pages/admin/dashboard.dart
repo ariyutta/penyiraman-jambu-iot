@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:penyiraman_jambu_iot/controllers/SampelController.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class Dashboard extends StatefulWidget {
@@ -11,6 +13,8 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  SampelController models = Get.put(SampelController());
+
   @override
   void initState() {
     super.initState();
@@ -55,50 +59,57 @@ class _DashboardState extends State<Dashboard> {
                       child: SizedBox(
                         width: 200,
                         height: 200,
-                        child: SfRadialGauge(
-                          axes: <RadialAxis>[
-                            RadialAxis(
-                              maximum: 100,
-                              radiusFactor: 1,
-                              startAngle: 135,
-                              endAngle: 45,
-                              showLabels: false,
-                              showTicks: false,
-                              axisLineStyle: const AxisLineStyle(
-                                cornerStyle: CornerStyle.bothFlat,
-                                thickness: 25,
-                              ),
-                              pointers: const <GaugePointer>[
-                                RangePointer(
-                                  value: 78,
-                                  cornerStyle: CornerStyle.bothCurve,
-                                  width: 25,
-                                  sizeUnit: GaugeSizeUnit.logicalPixel,
-                                  gradient: SweepGradient(
-                                    colors: <Color>[
-                                      Colors.yellow,
-                                      Colors.green,
-                                    ],
+                        child: Obx(
+                          () {
+                            return SfRadialGauge(
+                              axes: <RadialAxis>[
+                                RadialAxis(
+                                  maximum: 100,
+                                  radiusFactor: 1,
+                                  startAngle: 135,
+                                  endAngle: 45,
+                                  showLabels: false,
+                                  showTicks: false,
+                                  axisLineStyle: const AxisLineStyle(
+                                    cornerStyle: CornerStyle.bothFlat,
+                                    thickness: 25,
                                   ),
+                                  pointers: <GaugePointer>[
+                                    RangePointer(
+                                      value:
+                                          (models.objSatu.value.sensorDigital)
+                                                  ?.toDouble() ??
+                                              0,
+                                      cornerStyle: CornerStyle.bothCurve,
+                                      width: 25,
+                                      sizeUnit: GaugeSizeUnit.logicalPixel,
+                                      gradient: const SweepGradient(
+                                        colors: <Color>[
+                                          Colors.yellow,
+                                          Colors.green,
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                  annotations: <GaugeAnnotation>[
+                                    GaugeAnnotation(
+                                      angle: 90,
+                                      axisValue: 5,
+                                      positionFactor: 0.1,
+                                      widget: Text(
+                                        // "78",
+                                        '${models.objSatu.value.sensorDigital}',
+                                        style: const TextStyle(
+                                          fontSize: 60,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ],
-                              annotations: const <GaugeAnnotation>[
-                                GaugeAnnotation(
-                                  angle: 90,
-                                  axisValue: 5,
-                                  positionFactor: 0.1,
-                                  widget: Text(
-                                    "78",
-                                    // '${dataObjSatu.obj.value.sensorDigital}',
-                                    style: TextStyle(
-                                      fontSize: 60,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ],
+                            );
+                          },
                         ),
                       ),
                     ),
@@ -162,50 +173,56 @@ class _DashboardState extends State<Dashboard> {
                       child: SizedBox(
                         width: 200,
                         height: 200,
-                        child: SfRadialGauge(
-                          axes: <RadialAxis>[
-                            RadialAxis(
-                              maximum: 100,
-                              radiusFactor: 1,
-                              startAngle: 135,
-                              endAngle: 45,
-                              showLabels: false,
-                              showTicks: false,
-                              axisLineStyle: const AxisLineStyle(
-                                cornerStyle: CornerStyle.bothFlat,
-                                thickness: 25,
-                              ),
-                              pointers: const <GaugePointer>[
-                                RangePointer(
-                                  value: 92,
-                                  cornerStyle: CornerStyle.bothCurve,
-                                  width: 25,
-                                  sizeUnit: GaugeSizeUnit.logicalPixel,
-                                  gradient: SweepGradient(
-                                    colors: <Color>[
-                                      Colors.yellow,
-                                      Colors.green,
-                                    ],
+                        child: Obx(
+                          () {
+                            return SfRadialGauge(
+                              axes: <RadialAxis>[
+                                RadialAxis(
+                                  maximum: 100,
+                                  radiusFactor: 1,
+                                  startAngle: 135,
+                                  endAngle: 45,
+                                  showLabels: false,
+                                  showTicks: false,
+                                  axisLineStyle: const AxisLineStyle(
+                                    cornerStyle: CornerStyle.bothFlat,
+                                    thickness: 25,
                                   ),
+                                  pointers: <GaugePointer>[
+                                    RangePointer(
+                                      value: (models.objDua.value.sensorDigital)
+                                              ?.toDouble() ??
+                                          0,
+                                      cornerStyle: CornerStyle.bothCurve,
+                                      width: 25,
+                                      sizeUnit: GaugeSizeUnit.logicalPixel,
+                                      gradient: const SweepGradient(
+                                        colors: <Color>[
+                                          Colors.yellow,
+                                          Colors.green,
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                  annotations: <GaugeAnnotation>[
+                                    GaugeAnnotation(
+                                      angle: 90,
+                                      axisValue: 5,
+                                      positionFactor: 0.1,
+                                      widget: Text(
+                                        // "92",
+                                        '${models.objDua.value.sensorDigital}',
+                                        style: const TextStyle(
+                                          fontSize: 60,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ],
-                              annotations: const <GaugeAnnotation>[
-                                GaugeAnnotation(
-                                  angle: 90,
-                                  axisValue: 5,
-                                  positionFactor: 0.1,
-                                  widget: Text(
-                                    "92",
-                                    // '${dataObjSatu.obj.value.sensorDigital}',
-                                    style: TextStyle(
-                                      fontSize: 60,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ],
+                            );
+                          },
                         ),
                       ),
                     ),
@@ -237,112 +254,6 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
             // Card
-            Card(
-              elevation: 5,
-              child: Padding(
-                padding: const EdgeInsets.all(13.0),
-                child: Column(
-                  children: [
-                    Container(
-                      width: double.infinity,
-                      child: const Text(
-                        'SAMPEL 3',
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      child: const Text(
-                        'Sedang proses Menginisialisasi..',
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.fromLTRB(70, 20, 70, 0),
-                      child: SizedBox(
-                        width: 200,
-                        height: 200,
-                        child: SfRadialGauge(
-                          axes: <RadialAxis>[
-                            RadialAxis(
-                              maximum: 100,
-                              radiusFactor: 1,
-                              startAngle: 135,
-                              endAngle: 45,
-                              showLabels: false,
-                              showTicks: false,
-                              axisLineStyle: const AxisLineStyle(
-                                cornerStyle: CornerStyle.bothFlat,
-                                thickness: 25,
-                              ),
-                              pointers: const <GaugePointer>[
-                                RangePointer(
-                                  value: 67,
-                                  cornerStyle: CornerStyle.bothCurve,
-                                  width: 25,
-                                  sizeUnit: GaugeSizeUnit.logicalPixel,
-                                  gradient: SweepGradient(
-                                    colors: <Color>[
-                                      Colors.yellow,
-                                      Colors.green,
-                                    ],
-                                  ),
-                                ),
-                              ],
-                              annotations: const <GaugeAnnotation>[
-                                GaugeAnnotation(
-                                  angle: 90,
-                                  axisValue: 5,
-                                  positionFactor: 0.1,
-                                  widget: Text(
-                                    "67",
-                                    // '${dataObjSatu.obj.value.sensorDigital}',
-                                    style: TextStyle(
-                                      fontSize: 60,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          // backgroundColor:
-                          //     const Color.fromARGB(255, 10, 85, 126),
-                          foregroundColor: Colors.orange,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(32.0),
-                          ),
-                        ),
-                        onPressed: () => {
-                          // TOMBOL PENYIRAMAN
-                        },
-                        child: const Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: Text(
-                            'PENYIRAMAN SEDANG DILAKUKAN',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
           ],
         ),
       ),
