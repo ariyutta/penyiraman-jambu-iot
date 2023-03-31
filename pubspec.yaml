@@ -40,6 +40,8 @@ dependencies:
   flutter_onboarding_slider: ^1.0.9
   firebase_auth: ^4.3.0
   syncfusion_flutter_gauges: ^21.1.35
+  firebase_messaging: ^14.3.0
+  flutter_local_notifications: ^13.0.0
 
 dev_dependencies:
   flutter_test:

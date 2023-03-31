@@ -15,6 +15,12 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   SampelController models = Get.put(SampelController());
 
+  int parameterMin = 70;
+  int parameterMax = 90;
+
+  bool keranBuka = true;
+  bool keranTutup = false;
+
   @override
   void initState() {
     super.initState();
@@ -35,23 +41,33 @@ class _DashboardState extends State<Dashboard> {
                   children: [
                     Container(
                       width: double.infinity,
-                      child: const Text(
-                        'SAMPEL 1',
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
+                      decoration: BoxDecoration(
+                        color: Colors.black12,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Text(
+                          'SAMPEL 1',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
                       ),
                     ),
                     Container(
                       width: double.infinity,
-                      child: const Text(
-                        'Terakhir disiram 2 jam yang lalu',
-                        style: TextStyle(
-                          fontSize: 16,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                        child: Text(
+                          'Terakhir disiram 2 jam yang lalu',
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
                       ),
                     ),
                     Container(
@@ -113,34 +129,19 @@ class _DashboardState extends State<Dashboard> {
                         ),
                       ),
                     ),
-                    Container(
-                      width: double.infinity,
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromARGB(255, 10, 85, 126),
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(32.0),
-                          ),
-                        ),
-                        onPressed: () => {
-                          // TOMBOL PENYIRAMAN
-                        },
-                        child: const Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: Text(
-                            'MULAI PENYIRAMAN',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                        ),
-                      ),
+                    Obx(
+                      () {
+                        return Container(
+                          width: double.infinity,
+                          child: kondisiSatu(),
+                        );
+                      },
                     ),
                   ],
                 ),
               ),
             ),
-            //
+            // Card
             Card(
               elevation: 5,
               child: Padding(
@@ -149,23 +150,33 @@ class _DashboardState extends State<Dashboard> {
                   children: [
                     Container(
                       width: double.infinity,
-                      child: const Text(
-                        'SAMPEL 2',
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
+                      decoration: BoxDecoration(
+                        color: Colors.black12,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Text(
+                          'SAMPEL 2',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
                       ),
                     ),
                     Container(
                       width: double.infinity,
-                      child: const Text(
-                        'Terakhir disiram 45 menit yang lalu',
-                        style: TextStyle(
-                          fontSize: 16,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                        child: Text(
+                          'Terakhir disiram 45 menit yang lalu',
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
                       ),
                     ),
                     Container(
@@ -210,7 +221,7 @@ class _DashboardState extends State<Dashboard> {
                                       axisValue: 5,
                                       positionFactor: 0.1,
                                       widget: Text(
-                                        // "92",
+                                        // "78",
                                         '${models.objDua.value.sensorDigital}',
                                         style: const TextStyle(
                                           fontSize: 60,
@@ -226,28 +237,13 @@ class _DashboardState extends State<Dashboard> {
                         ),
                       ),
                     ),
-                    Container(
-                      width: double.infinity,
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          // backgroundColor:
-                          //     const Color.fromARGB(255, 10, 85, 126),
-                          foregroundColor: Colors.green,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(32.0),
-                          ),
-                        ),
-                        onPressed: () => {
-                          // TOMBOL PENYIRAMAN
-                        },
-                        child: const Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: Text(
-                            'PENYIRAMAN SUDAH DILAKUKAN',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                        ),
-                      ),
+                    Obx(
+                      () {
+                        return Container(
+                          width: double.infinity,
+                          child: kondisiDua(),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -258,5 +254,259 @@ class _DashboardState extends State<Dashboard> {
         ),
       ),
     );
+  }
+
+  Widget kondisiSatu() {
+    if (models.objSatu.value.statusKeranAir == keranBuka) {
+      if (models.objSatu.value.sensorDigital! >= parameterMin) {
+        if (models.objSatu.value.sensorDigital! <= parameterMax) {
+          return TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.orange,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(32.0),
+              ),
+            ),
+            onPressed: () => {
+              // TOMBOL PENYIRAMAN
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Text(
+                'PENYIRAMAN SEDANG DILAKUKAN',
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+          );
+        } else {
+          return TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.red,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(32.0),
+              ),
+            ),
+            onPressed: () => {
+              // TOMBOL PENYIRAMAN
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Text(
+                'PENYIRAMAN MELEWATI BATAS PARAMETER',
+                style: TextStyle(fontSize: 14),
+              ),
+            ),
+          );
+        }
+      } else {
+        return TextButton(
+          style: TextButton.styleFrom(
+            foregroundColor: Colors.orange,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(32.0),
+            ),
+          ),
+          onPressed: () => {
+            // TOMBOL PENYIRAMAN
+          },
+          child: const Padding(
+            padding: EdgeInsets.all(5.0),
+            child: Text(
+              'PENYIRAMAN SEDANG DILAKUKAN',
+              style: TextStyle(fontSize: 18),
+            ),
+          ),
+        );
+      }
+    } else {
+      if (models.objSatu.value.sensorDigital! >= parameterMin) {
+        if (models.objSatu.value.sensorDigital! < parameterMax) {
+          return TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.green,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(32.0),
+              ),
+            ),
+            onPressed: () => {
+              // TOMBOL PENYIRAMAN
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Text(
+                'PENYIRAMAN SUDAH DILAKUKAN',
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+          );
+        } else {
+          return TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.green,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(32.0),
+              ),
+            ),
+            onPressed: () => {
+              // TOMBOL PENYIRAMAN
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Text(
+                'PENYIRAMAN SEDANG DILAKUKAN',
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+          );
+        }
+      } else {
+        return TextButton(
+          style: TextButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 10, 85, 126),
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(32.0),
+            ),
+          ),
+          onPressed: () => {
+            // TOMBOL PENYIRAMAN
+          },
+          child: const Padding(
+            padding: EdgeInsets.all(5.0),
+            child: Text(
+              'MULAI PENYIRAMAN',
+              style: TextStyle(fontSize: 18),
+            ),
+          ),
+        );
+      }
+    }
+  }
+
+  Widget kondisiDua() {
+    if (models.objDua.value.statusKeranAir == keranBuka) {
+      if (models.objDua.value.sensorDigital! >= parameterMin) {
+        if (models.objDua.value.sensorDigital! <= parameterMax) {
+          return TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.orange,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(32.0),
+              ),
+            ),
+            onPressed: () => {
+              // TOMBOL PENYIRAMAN
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Text(
+                'PENYIRAMAN SEDANG DILAKUKAN',
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+          );
+        } else {
+          return TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.red,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(32.0),
+              ),
+            ),
+            onPressed: () => {
+              // TOMBOL PENYIRAMAN
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Text(
+                'PENYIRAMAN MELEWATI BATAS PARAMETER',
+                style: TextStyle(fontSize: 14),
+              ),
+            ),
+          );
+        }
+      } else {
+        return TextButton(
+          style: TextButton.styleFrom(
+            foregroundColor: Colors.orange,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(32.0),
+            ),
+          ),
+          onPressed: () => {
+            // TOMBOL PENYIRAMAN
+          },
+          child: const Padding(
+            padding: EdgeInsets.all(5.0),
+            child: Text(
+              'PENYIRAMAN SEDANG DILAKUKAN',
+              style: TextStyle(fontSize: 18),
+            ),
+          ),
+        );
+      }
+    } else {
+      if (models.objDua.value.sensorDigital! >= parameterMin) {
+        if (models.objDua.value.sensorDigital! < parameterMax) {
+          return TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.green,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(32.0),
+              ),
+            ),
+            onPressed: () => {
+              // TOMBOL PENYIRAMAN
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Text(
+                'PENYIRAMAN SUDAH DILAKUKAN',
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+          );
+        } else {
+          return TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.green,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(32.0),
+              ),
+            ),
+            onPressed: () => {
+              // TOMBOL PENYIRAMAN
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Text(
+                'PENYIRAMAN SEDANG DILAKUKAN',
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+          );
+        }
+      } else {
+        return TextButton(
+          style: TextButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 10, 85, 126),
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(32.0),
+            ),
+          ),
+          onPressed: () => {
+            // TOMBOL PENYIRAMAN
+          },
+          child: const Padding(
+            padding: EdgeInsets.all(5.0),
+            child: Text(
+              'MULAI PENYIRAMAN',
+              style: TextStyle(fontSize: 18),
+            ),
+          ),
+        );
+      }
+    }
   }
 }
