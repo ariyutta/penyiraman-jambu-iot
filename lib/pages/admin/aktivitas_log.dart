@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class DataLog extends StatefulWidget {
@@ -11,7 +13,7 @@ class _DataLogState extends State<DataLog> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(10, 250, 10, 10),
+      padding: const EdgeInsets.fromLTRB(10, 230, 10, 10),
       child: Card(
         elevation: 5,
         child: ListView.separated(

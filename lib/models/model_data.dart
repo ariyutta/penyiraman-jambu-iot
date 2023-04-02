@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_new, prefer_collection_literals
+
 import 'package:get/get.dart';
 
 class ModelSatu {
@@ -19,9 +21,9 @@ class ModelSatu {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['SensorDigital'] = this.sensorDigital.obs;
-    data['StatusKeranAir'] = this.statusKeranAir.obs;
-    data['Waktu'] = this.waktu.obs;
+    data['SensorDigital'] = sensorDigital.obs;
+    data['StatusKeranAir'] = statusKeranAir.obs;
+    data['Waktu'] = waktu.obs;
     return data;
   }
 }
@@ -45,9 +47,9 @@ class ModelDua {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['SensorDigital'] = this.sensorDigital.obs;
-    data['StatusKeranAir'] = this.statusKeranAir.obs;
-    data['Waktu'] = this.waktu.obs;
+    data['SensorDigital'] = sensorDigital.obs;
+    data['StatusKeranAir'] = statusKeranAir.obs;
+    data['Waktu'] = waktu.obs;
     return data;
   }
 }

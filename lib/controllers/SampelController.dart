@@ -11,7 +11,7 @@ class SampelController extends GetxController {
       FirebaseDatabase.instance.ref().child('ProjectTugasAkhirArbi/ObjSampel2');
 
   var objSatu = ModelSatu().obs;
-  var objDua = ModelSatu().obs;
+  var objDua = ModelDua().obs;
 
   Future<void> initData() async {
     dbRef1.onValue.listen((DatabaseEvent event) {
@@ -20,7 +20,7 @@ class SampelController extends GetxController {
     });
     dbRef2.onValue.listen((DatabaseEvent event) {
       final data = event.snapshot.value;
-      objDua.value = ModelSatu.fromJson(data as Map);
+      objDua.value = ModelDua.fromJson(data as Map);
     });
   }
 

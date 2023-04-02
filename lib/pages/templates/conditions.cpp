@@ -6,11 +6,11 @@ bool keranTutup = false;
 
 if(valueKeran == keranBuka) {
     if(valueSensor >= parameterMin) {
-        if(valueSensor < parameterMax) {
-            'Penyiraman Melewati Batas Parameter';
+        if(valueSensor <= parameterMax) {
+            'Penyiraman Sedang Dilakukan';
         }
         else {
-            'ERROR!'
+            'Penyiraman Melewati Batas Parameter'
         }
     }
     else {
@@ -18,13 +18,13 @@ if(valueKeran == keranBuka) {
     }   
 }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 else {
-    if(valueSensor > parameterMin) {
-        if(valueSensor < parameterMax) {
-            'Penyiraman Secara Drainase';
+    if(valueSensor >= parameterMin) {
+        if(valueSensor <= parameterMax) {
+            'Penyiraman Sudah Dilakukan';
         }
-    }
-    else if(valueSensor == parameterMin) {
-        'Penyiraman Sudah Dilakukan';
+        else {
+            'Penyiraman Sudah Dilakukan';
+        }
     }
     else {
         'Mulai Penyiraman';                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     

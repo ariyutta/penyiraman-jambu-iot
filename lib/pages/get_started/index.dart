@@ -5,6 +5,8 @@ import 'package:penyiraman_jambu_iot/pages/auth/login.dart';
 class GetStarted extends StatelessWidget {
   final Color kDarkBlueColor = const Color.fromARGB(255, 10, 85, 126);
 
+  const GetStarted({super.key});
+
   @override
   Widget build(BuildContext context) {
     return OnBoardingSlider(
@@ -15,7 +17,7 @@ class GetStarted extends StatelessWidget {
             PageRouteBuilder(
               transitionDuration: const Duration(milliseconds: 1000),
               pageBuilder: (context, animation, secondaryAnimation) =>
-                  LoginPages(),
+                  const LoginPages(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(
@@ -39,7 +41,7 @@ class GetStarted extends StatelessWidget {
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (context) => LoginPages(),
+              builder: (context) => const LoginPages(),
             ),
             (route) => false);
       },

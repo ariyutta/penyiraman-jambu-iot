@@ -1,3 +1,5 @@
+// ignore_for_file: null_check_always_fails, unused_local_variable, file_names, avoid_print
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

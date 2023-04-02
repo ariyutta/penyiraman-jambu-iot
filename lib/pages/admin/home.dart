@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations, non_constant_identifier_names, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:penyiraman_jambu_iot/controllers/HomeController.dart';
@@ -68,39 +70,7 @@ class _MyHomeState extends State<MyHome> {
           children: [
             Column(
               children: [
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.fromLTRB(0, 95, 0, 95),
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/bg_dashboard.png'),
-                        fit: BoxFit.cover),
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(30.0),
-                      bottomRight: Radius.circular(30.0),
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      const Text(
-                        'Selamat Datang,',
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 164, 255, 98),
-                        ),
-                      ),
-                      Text(
-                        '${widget.emailUser}',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                background(),
               ],
             ),
             Positioned(
@@ -110,6 +80,152 @@ class _MyHomeState extends State<MyHome> {
         ),
       ),
     );
+  }
+
+  Widget background() {
+    switch (XselectedIndex) {
+      case 0:
+        return Container(
+          width: double.infinity,
+          padding: const EdgeInsets.fromLTRB(0, 85, 0, 85),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/bg_dashboard.png'),
+              fit: BoxFit.cover,
+            ),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(30.0),
+              bottomRight: Radius.circular(30.0),
+            ),
+          ),
+          child: Column(
+            children: [
+              const Text(
+                'Selamat Datang,',
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 164, 255, 98),
+                ),
+              ),
+              Text(
+                '${widget.emailUser}',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        );
+
+      case 1:
+        return Container(
+          width: double.infinity,
+          padding: const EdgeInsets.fromLTRB(0, 85, 0, 85),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/bg_log.png'),
+              fit: BoxFit.cover,
+            ),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(30.0),
+              bottomRight: Radius.circular(30.0),
+            ),
+          ),
+          child: Column(
+            children: [
+              const Text(
+                'Selamat Datang,',
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 164, 255, 98),
+                ),
+              ),
+              Text(
+                '${widget.emailUser}',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        );
+      case 2:
+        return Container(
+          width: double.infinity,
+          padding: const EdgeInsets.fromLTRB(0, 85, 0, 85),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/bg_dashboard.png'),
+              fit: BoxFit.cover,
+            ),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(30.0),
+              bottomRight: Radius.circular(30.0),
+            ),
+          ),
+          child: Column(
+            children: [
+              Text(
+                '',
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 164, 255, 98),
+                ),
+              ),
+              Text(
+                '',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        );
+      default:
+        return Container(
+          width: double.infinity,
+          padding: const EdgeInsets.fromLTRB(0, 85, 0, 85),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/bg_dashboard.png'),
+              fit: BoxFit.cover,
+            ),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(30.0),
+              bottomRight: Radius.circular(30.0),
+            ),
+          ),
+          child: Column(
+            children: [
+              const Text(
+                'Selamat Datang,',
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 164, 255, 98),
+                ),
+              ),
+              Text(
+                '${widget.emailUser}',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        );
+    }
   }
 
   Widget content() {

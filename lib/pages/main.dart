@@ -8,7 +8,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(
-    GetMaterialApp(
+    const GetMaterialApp(
       title: 'Pondok Paman Petani',
       home: GetStarted(),
     ),
@@ -16,12 +16,14 @@ Future<void> main() async {
 }
 
 class GetMaterialApps extends StatelessWidget {
+  const GetMaterialApps({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => LoginPages()),
+        GetPage(name: '/', page: () => const LoginPages()),
       ],
     );
   }

@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:penyiraman_jambu_iot/controllers/LoginController.dart';
 
 class LoginPages extends StatefulWidget {
+  const LoginPages({super.key});
+
   @override
   State<LoginPages> createState() => _LoginPagesState();
 }
