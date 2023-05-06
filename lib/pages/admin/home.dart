@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:penyiraman_jambu_iot/controllers/HomeController.dart';
 import 'package:penyiraman_jambu_iot/pages/admin/dashboard.dart';
 import 'package:penyiraman_jambu_iot/pages/admin/aktivitas_log.dart';
-import 'package:penyiraman_jambu_iot/pages/admin/profil.dart';
+import 'package:penyiraman_jambu_iot/pages/admin/pengaturan.dart';
 
 class MyHome extends StatefulWidget {
   const MyHome({super.key, required this.emailUser});
@@ -52,8 +52,8 @@ class _MyHomeState extends State<MyHome> {
             label: 'Aktivitas Log',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
+            icon: Icon(Icons.settings),
+            label: 'Pengaturan',
           ),
         ],
         currentIndex: XselectedIndex,
@@ -103,7 +103,7 @@ class _MyHomeState extends State<MyHome> {
               const Text(
                 'Selamat Datang,',
                 style: TextStyle(
-                  fontSize: 25,
+                  fontSize: 23,
                   fontWeight: FontWeight.bold,
                   color: Color.fromARGB(255, 164, 255, 98),
                 ),
@@ -111,7 +111,7 @@ class _MyHomeState extends State<MyHome> {
               Text(
                 '${widget.emailUser}',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.w500,
                   color: Colors.white,
                 ),
@@ -139,7 +139,7 @@ class _MyHomeState extends State<MyHome> {
               const Text(
                 'Selamat Datang,',
                 style: TextStyle(
-                  fontSize: 25,
+                  fontSize: 23,
                   fontWeight: FontWeight.bold,
                   color: Color.fromARGB(255, 164, 255, 98),
                 ),
@@ -147,7 +147,7 @@ class _MyHomeState extends State<MyHome> {
               Text(
                 '${widget.emailUser}',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.w500,
                   color: Colors.white,
                 ),
@@ -235,7 +235,7 @@ class _MyHomeState extends State<MyHome> {
       case 1:
         return const DataLog();
       case 2:
-        return const Profil();
+        return const Pengaturan();
       default:
         return Dashboard(emailUser: widget.emailUser);
     }
@@ -244,13 +244,13 @@ class _MyHomeState extends State<MyHome> {
   Widget panelTitle() {
     switch (XselectedIndex) {
       case 0:
-        return Text("Dashboard", style: TextStyle(fontSize: 25));
+        return Text("Dashboard", style: TextStyle(fontSize: 21));
       case 1:
-        return Text("Aktivitas Log", style: TextStyle(fontSize: 25));
+        return Text("Aktivitas Log", style: TextStyle(fontSize: 21));
       case 2:
-        return Text("Profil", style: TextStyle(fontSize: 25));
+        return Text("Pengaturan", style: TextStyle(fontSize: 21));
       default:
-        return Text("Dashboard", style: TextStyle(fontSize: 25));
+        return Text("Dashboard", style: TextStyle(fontSize: 21));
     }
   }
 
@@ -263,7 +263,7 @@ class _MyHomeState extends State<MyHome> {
         return Icon(Icons.event_note,
             size: 30, color: Color.fromARGB(255, 221, 235, 255));
       case 2:
-        return Icon(Icons.person,
+        return Icon(Icons.settings,
             size: 30, color: Color.fromARGB(255, 221, 235, 255));
       default:
         return Icon(Icons.dashboard,

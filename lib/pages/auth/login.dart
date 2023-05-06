@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:penyiraman_jambu_iot/controllers/LoginController.dart';
@@ -15,7 +17,7 @@ class _LoginPagesState extends State<LoginPages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 221, 235, 255),
+      backgroundColor: Color.fromARGB(255, 221, 235, 255),
       body: WillPopScope(
         onWillPop: () => login.onBackButtonPressed(context),
         child: Stack(
@@ -24,8 +26,8 @@ class _LoginPagesState extends State<LoginPages> {
               children: [
                 Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.all(120.0),
-                  decoration: const BoxDecoration(
+                  padding: EdgeInsets.all(120.0),
+                  decoration: BoxDecoration(
                     color: Color.fromARGB(255, 10, 85, 126),
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(25.0),
@@ -35,7 +37,7 @@ class _LoginPagesState extends State<LoginPages> {
                 ),
               ],
             ),
-            const Center(
+            Center(
               child: Padding(
                 padding: EdgeInsets.fromLTRB(0, 680, 0, 0),
                 child: Text(
@@ -62,7 +64,7 @@ class _LoginPagesState extends State<LoginPages> {
                             child: Column(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(8.0),
                                   child: Image.asset(
                                     'assets/logo-apps.png',
                                     width: 200,
@@ -72,7 +74,7 @@ class _LoginPagesState extends State<LoginPages> {
                                 const Padding(
                                   padding: EdgeInsets.fromLTRB(10, 0, 10, 20),
                                   child: Text(
-                                    'Sistem Pemantauan dan Kendali Penyiraman Berbasis IoT',
+                                    'Penyiraman Jambu Kristal Berbasis IoT',
                                     style: TextStyle(
                                       fontSize: 22,
                                       fontWeight: FontWeight.bold,
@@ -131,13 +133,13 @@ class _LoginPagesState extends State<LoginPages> {
                                 ),
                                 Padding(
                                   padding:
-                                      const EdgeInsets.fromLTRB(8, 20, 8, 20),
+                                      const EdgeInsets.fromLTRB(8, 10, 8, 20),
                                   child: SizedBox(
                                     width: double.infinity,
                                     child: TextButton(
                                       style: TextButton.styleFrom(
-                                        backgroundColor: const Color.fromARGB(
-                                            255, 10, 85, 126),
+                                        backgroundColor:
+                                            Color.fromARGB(255, 10, 85, 126),
                                         foregroundColor: Colors.white,
                                         // elevation: 10,
                                         shape: RoundedRectangleBorder(
@@ -148,13 +150,16 @@ class _LoginPagesState extends State<LoginPages> {
                                       onPressed: () {
                                         login.prosesLogin();
                                       },
-                                      child: Column(
-                                        children: const [
-                                          Text(
-                                            'LOGIN',
-                                            style: TextStyle(fontSize: 18),
-                                          ),
-                                        ],
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              'LOGIN',
+                                              style: TextStyle(fontSize: 18),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),

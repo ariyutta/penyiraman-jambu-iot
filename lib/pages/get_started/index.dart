@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
 import 'package:penyiraman_jambu_iot/pages/auth/login.dart';
@@ -17,7 +19,7 @@ class GetStarted extends StatelessWidget {
             PageRouteBuilder(
               transitionDuration: const Duration(milliseconds: 1000),
               pageBuilder: (context, animation, secondaryAnimation) =>
-                  const LoginPages(),
+                  LoginPages(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(

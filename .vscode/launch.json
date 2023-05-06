@@ -8,7 +8,7 @@
             "name": "penyiraman_jambu_iot",
             "request": "launch",
             "type": "dart",
-            "program": "lib/pages/main.dart"
+            "program": "lib/main.dart"
         },
         {
             "name": "penyiraman_jambu_iot (profile mode)",
@@ -20,7 +20,7 @@
             "name": "penyiraman_jambu_iot (release mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "release",
         }
     ]
 }

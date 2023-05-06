@@ -43,6 +43,10 @@ dependencies:
   firebase_messaging: ^14.3.0
   flutter_local_notifications: ^13.0.0
   intl: ^0.17.0
+  shared_preferences: ^2.1.0
+  flutter_switch: ^0.3.2
+  flutter_splash_screen: ^1.0.0+6
+  another_flutter_splash_screen: ^1.1.4
 
 dev_dependencies:
   flutter_test:

@@ -1,9 +1,10 @@
-// ignore_for_file: null_check_always_fails, unused_local_variable, file_names, avoid_print
+// ignore_for_file: null_check_always_fails, unused_local_variable, file_names, avoid_print, prefer_const_constructors, unused_field
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:penyiraman_jambu_iot/pages/templates/loading_login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
   String emailInput = '';
@@ -23,8 +24,11 @@ class LoginController extends GetxController {
   void prosesLogin() async {
     try {
       if (cekInput()) {
+        SharedPreferences saveLogin = await SharedPreferences.getInstance();
         final user = await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: emailInput, password: passInput);
+        saveLogin.setString("email", emailInput);
+        saveLogin.setString("password", passInput);
         Get.off(
           SplashLogin(
             emailInput: emailInput,
@@ -45,7 +49,7 @@ class LoginController extends GetxController {
           title: const Text(
             'Keluar',
           ),
-          content: const Text(
+          content: Text(
             'Anda ingin menutup aplikasi ini?',
           ),
           actions: <Widget>[
@@ -53,7 +57,7 @@ class LoginController extends GetxController {
               onPressed: () {
                 Navigator.of(context).pop(true);
               },
-              child: const Text(
+              child: Text(
                 'Ya',
               ),
             ),
@@ -61,7 +65,7 @@ class LoginController extends GetxController {
               onPressed: () {
                 Navigator.of(context).pop(false);
               },
-              child: const Text(
+              child: Text(
                 'Batal',
               ),
             )

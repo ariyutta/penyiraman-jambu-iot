@@ -1,32 +1,84 @@
-int parameterMax = 90;
-int parameterMin = 70;
-
-bool keranBuka = true;
-bool keranTutup = false;
-
-if(valueKeran == keranBuka) {
-    if(valueSensor >= parameterMin) {
-        if(valueSensor <= parameterMax) {
-            'Penyiraman Sedang Dilakukan';
+if(models.objOtomatis.value.statusAktif == true) {
+    if (models.objSatu.value.statusKeranAir == true) {
+        if (models.objSatu.value.sensorDigital! >= parameterMin) {
+            if (models.objSatu.value.sensorDigital! <= parameterMax) {
+                // OTOMATIS
+            }
+            else {
+                // OTOMATIS
+            }
         }
         else {
-            'Penyiraman Melewati Batas Parameter'
+            // OTOMATIS
         }
-    }
+    } 
     else {
-        'Penyiraman Sedang Dilakukan';
-    }   
-}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+      if (models.objSatu.value.sensorDigital! >= parameterMin) {
+        if (models.objSatu.value.sensorDigital! <= parameterMax) {
+          // OTOMATIS
+        }
+        else {
+          // OTOMATIS
+        }
+      }
+      else {
+        // OTOMATIS
+      }
+    }
+}
 else {
-    if(valueSensor >= parameterMin) {
-        if(valueSensor <= parameterMax) {
-            'Penyiraman Sudah Dilakukan';
-        }
+    if (models.objSatu.value.statusKeranAir == true) {
+        if (models.objSatu.value.sensorDigital! >= parameterMin) {
+            if (models.objSatu.value.sensorDigital! <= parameterMax) {
+                databaseReference
+                    .child('ProjectTugasAkhirArbi')
+                    .child('ObjSampel1')
+                    .set(
+                    {
+                        'StatusKeranAir': false,
+                    },
+                );
+            } 
+            else {
+                databaseReference
+                    .child('ProjectTugasAkhirArbi')
+                    .child('ObjSampel1')
+                    .set(
+                    {
+                        'StatusKeranAir': false,
+                    },
+                );
+            }
+        } 
         else {
-            'Penyiraman Sudah Dilakukan';
+            databaseReference
+                .child('ProjectTugasAkhirArbi')
+                .child('ObjSampel1')
+                .set(
+                {
+                    'StatusKeranAir': false,
+                },
+            );
         }
-    }
+    } 
     else {
-        'Mulai Penyiraman';                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+        if (models.objSatu.value.sensorDigital! >= parameterMin) {
+            if (models.objSatu.value.sensorDigital! <= parameterMax) {
+                // TOMBOL AKSI
+            }
+            else {
+                // TOMBOL AKSI
+            }
+        } 
+        else {
+            databaseReference
+                .child('ProjectTugasAkhirArbi')
+                .child('ObjSampel1')
+                .set(
+                {
+                    'StatusKeranAir': true,
+                },
+            );
+        }
     }
 }

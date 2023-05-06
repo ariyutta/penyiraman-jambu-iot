@@ -1,36 +1,34 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors
 
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:penyiraman_jambu_iot/pages/admin/home.dart';
+import 'package:penyiraman_jambu_iot/pages/auth/login.dart';
 
-// ignore: must_be_immutable
-class SplashLogin extends StatefulWidget {
-  String emailInput;
-  String passInput;
-  SplashLogin({super.key, required this.emailInput, required this.passInput});
+class SplashLogout extends StatefulWidget {
+  const SplashLogout({super.key});
 
   @override
-  State<SplashLogin> createState() => _SplashLoginState();
+  State<SplashLogout> createState() => _SplashLogoutState();
 }
 
-class _SplashLoginState extends State<SplashLogin> {
+class _SplashLogoutState extends State<SplashLogout> {
   @override
   void initState() {
+    super.initState();
+
     Future.delayed(
       Duration(
         milliseconds: 1000,
       ),
       () {
         Get.offAll(
-          MyHome(emailUser: widget.emailInput),
+          LoginPages(),
           transition: Transition.fadeIn,
           duration: Duration(milliseconds: 1000),
         );
       },
     );
-    super.initState();
   }
 
   @override
@@ -39,7 +37,7 @@ class _SplashLoginState extends State<SplashLogin> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomRight,
@@ -62,8 +60,8 @@ class _SplashLoginState extends State<SplashLogin> {
               ],
             ),
             Container(
-              margin: EdgeInsets.only(top: 50),
-              child: CircularProgressIndicator(
+              margin: const EdgeInsets.only(top: 50),
+              child: const CircularProgressIndicator(
                 color: Color.fromARGB(255, 10, 85, 126),
               ),
             ),
