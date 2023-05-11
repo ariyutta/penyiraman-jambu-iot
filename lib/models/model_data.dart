@@ -93,3 +93,28 @@ class Otomatis {
     return data;
   }
 }
+
+class DataLog {
+  int? kelembaban;
+  String? lokasi;
+  bool? statusKeranAir;
+  String? waktu;
+
+  DataLog({this.kelembaban, this.lokasi, this.statusKeranAir, this.waktu});
+
+  DataLog.fromJson(Map<dynamic, dynamic> json) {
+    kelembaban = json['Kelembaban'];
+    lokasi = json['Lokasi'];
+    statusKeranAir = json['StatusKeranAir'];
+    waktu = json['Waktu'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['Kelembaban'] = this.kelembaban;
+    data['Lokasi'] = this.lokasi;
+    data['StatusKeranAir'] = this.statusKeranAir;
+    data['Waktu'] = this.waktu;
+    return data;
+  }
+}

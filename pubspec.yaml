@@ -36,7 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.5
   firebase_database: ^10.0.16
-  firebase_core: ^2.8.0
+  firebase_core: ^2.11.0
   flutter_onboarding_slider: ^1.0.9
   firebase_auth: ^4.3.0
   syncfusion_flutter_gauges: ^21.1.35
