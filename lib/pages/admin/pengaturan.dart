@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, unused_import, deprecated_member_use
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, unused_import, deprecated_member_use, unused_local_variable
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:penyiraman_jambu_iot/controllers/HomeController.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:penyiraman_jambu_iot/controllers/SampelController.dart';
@@ -24,6 +25,9 @@ class _PengaturanState extends State<Pengaturan> {
 
   @override
   Widget build(BuildContext context) {
+    final now = DateTime.now();
+    String formattedDate = DateFormat('yyyy-MM-dd HH:mm:ss').format(now);
+
     return Container(
       padding: EdgeInsets.fromLTRB(10, 130, 10, 10),
       child: Column(
@@ -59,7 +63,7 @@ class _PengaturanState extends State<Pengaturan> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      'Arbi Yudatama',
+                      'Pondok Paman Petani',
                       style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
@@ -67,9 +71,9 @@ class _PengaturanState extends State<Pengaturan> {
                     ),
                   ),
                   Text(
-                    '(Administrator)',
+                    '(Jalan Parit Haji Husin II, Kota Pontianak)',
                     style: TextStyle(
-                      fontSize: 17,
+                      fontSize: 16,
                     ),
                   ),
                 ],
@@ -88,14 +92,94 @@ class _PengaturanState extends State<Pengaturan> {
                         elevation: 5,
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Icon(Icons.font_download_rounded, size: 40),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10.0),
+                                    child: Text(
+                                      'KENDALI OTOMATIS',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  Obx(
+                                    () {
+                                      return FlutterSwitch(
+                                        width: 90,
+                                        height: 40,
+                                        valueFontSize: 20,
+                                        toggleSize: 30,
+                                        value: models.objOtomatis.value
+                                            .statusAktif as bool,
+                                        borderRadius: 30.0,
+                                        padding: 8.0,
+                                        showOnOff: true,
+                                        activeText: 'ON',
+                                        inactiveText: 'OFF',
+                                        onToggle: (val) {
+                                          setState(() {
+                                            models.objOtomatis.value
+                                                .statusAktif = val;
+                                            if (models.objOtomatis.value
+                                                    .statusAktif ==
+                                                true) {
+                                              databaseReference
+                                                  .child(
+                                                      'ProjectTugasAkhirArbi')
+                                                  .child('ObjOtomatis')
+                                                  .update(
+                                                {
+                                                  'StatusAktif': true,
+                                                },
+                                              );
+                                            } else {
+                                              databaseReference
+                                                  .child(
+                                                      'ProjectTugasAkhirArbi')
+                                                  .child('ObjOtomatis')
+                                                  .update(
+                                                {
+                                                  'StatusAktif': false,
+                                                },
+                                              );
+                                            }
+                                          });
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 0.0),
+                      child: Card(
+                        elevation: 5,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                'KENDALI OTOMATIS',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
+                              Icon(Icons.grass, size: 40),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 65.0),
+                                child: Text(
+                                  'SAMPEL 1',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                               Obx(
@@ -105,35 +189,144 @@ class _PengaturanState extends State<Pengaturan> {
                                     height: 40,
                                     valueFontSize: 20,
                                     toggleSize: 30,
-                                    value: models.objOtomatis.value.statusAktif
+                                    value: models.objSatu.value.statusKeranAir
                                         as bool,
                                     borderRadius: 30.0,
                                     padding: 8.0,
-                                    showOnOff: false,
+                                    showOnOff: true,
+                                    activeText: 'ON',
+                                    inactiveText: 'OFF',
                                     onToggle: (val) {
                                       setState(() {
-                                        models.objOtomatis.value.statusAktif =
-                                            val;
                                         if (models.objOtomatis.value
                                                 .statusAktif ==
                                             true) {
-                                          databaseReference
-                                              .child('ProjectTugasAkhirArbi')
-                                              .child('ObjOtomatis')
-                                              .update(
-                                            {
-                                              'StatusAktif': true,
-                                            },
-                                          );
+                                          if (models.objSatu.value
+                                                  .statusKeranAir ==
+                                              true) {
+                                            if (models.objSatu.value
+                                                    .sensorDigital! >=
+                                                parameterMin) {
+                                              if (models.objSatu.value
+                                                      .sensorDigital! <=
+                                                  parameterMax) {
+                                                // TOMBOL OTOMATIS
+                                              } else {
+                                                // TOMBOL OTOMATIS
+                                              }
+                                            } else {
+                                              // TOMBOL OTOMATIS
+                                            }
+                                          } else {
+                                            if (models.objSatu.value
+                                                    .sensorDigital! >=
+                                                parameterMin) {
+                                              if (models.objSatu.value
+                                                      .sensorDigital! <=
+                                                  parameterMax) {
+                                                // TOMBOL OTOMATIS
+                                              } else {
+                                                // TOMBOL OTOMATIS
+                                              }
+                                            } else {
+                                              // TOMBOL OTOMATIS
+                                            }
+                                          }
                                         } else {
-                                          databaseReference
-                                              .child('ProjectTugasAkhirArbi')
-                                              .child('ObjOtomatis')
-                                              .update(
-                                            {
-                                              'StatusAktif': false,
-                                            },
-                                          );
+                                          if (models.objSatu.value
+                                                  .statusKeranAir ==
+                                              true) {
+                                            if (models.objSatu.value
+                                                    .sensorDigital! >=
+                                                parameterMin) {
+                                              if (models.objSatu.value
+                                                      .sensorDigital! <=
+                                                  parameterMax) {
+                                                models.objSatu.value
+                                                    .statusKeranAir = val;
+                                                databaseReference
+                                                    .child(
+                                                        'ProjectTugasAkhirArbi')
+                                                    .child('ObjSampel1')
+                                                    .update(
+                                                  {
+                                                    'StatusKeranAir': false,
+                                                  },
+                                                );
+                                              } else {
+                                                models.objSatu.value
+                                                    .statusKeranAir = val;
+                                                databaseReference
+                                                    .child(
+                                                        'ProjectTugasAkhirArbi')
+                                                    .child('ObjSampel1')
+                                                    .update(
+                                                  {
+                                                    'StatusKeranAir': false,
+                                                  },
+                                                );
+                                              }
+                                            } else {
+                                              models.objSatu.value
+                                                  .statusKeranAir = val;
+                                              databaseReference
+                                                  .child(
+                                                      'ProjectTugasAkhirArbi')
+                                                  .child('ObjSampel1')
+                                                  .update(
+                                                {
+                                                  'StatusKeranAir': false,
+                                                },
+                                              );
+                                            }
+                                          } else {
+                                            if (models.objSatu.value
+                                                    .sensorDigital! >=
+                                                parameterMin) {
+                                              if (models.objSatu.value
+                                                      .sensorDigital! <=
+                                                  parameterMax) {
+                                                models.objSatu.value
+                                                    .statusKeranAir = val;
+                                                databaseReference
+                                                    .child(
+                                                        'ProjectTugasAkhirArbi')
+                                                    .child('ObjSampel1')
+                                                    .update(
+                                                  {
+                                                    'StatusKeranAir': true,
+                                                    'Waktu': formattedDate,
+                                                  },
+                                                );
+                                              } else {
+                                                models.objSatu.value
+                                                    .statusKeranAir = val;
+                                                databaseReference
+                                                    .child(
+                                                        'ProjectTugasAkhirArbi')
+                                                    .child('ObjSampel1')
+                                                    .update(
+                                                  {
+                                                    'StatusKeranAir': true,
+                                                    'Waktu': formattedDate,
+                                                  },
+                                                );
+                                              }
+                                            } else {
+                                              models.objSatu.value
+                                                  .statusKeranAir = val;
+                                              databaseReference
+                                                  .child(
+                                                      'ProjectTugasAkhirArbi')
+                                                  .child('ObjSampel1')
+                                                  .update(
+                                                {
+                                                  'StatusKeranAir': true,
+                                                  'Waktu': formattedDate,
+                                                },
+                                              );
+                                            }
+                                          }
                                         }
                                       });
                                     },
@@ -146,351 +339,178 @@ class _PengaturanState extends State<Pengaturan> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 5),
+                      padding: const EdgeInsets.only(top: 0.0),
                       child: Card(
                         elevation: 5,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'SAMPEL 1',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Icon(Icons.grass, size: 40),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 65.0),
+                                child: Text(
+                                  'SAMPEL 2',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 8.0),
-                                    child: Obx(
-                                      () {
-                                        return FlutterSwitch(
-                                          width: 90,
-                                          height: 40,
-                                          valueFontSize: 19,
-                                          toggleSize: 30,
-                                          value: models.objSatu.value
-                                              .statusKeranAir as bool,
-                                          borderRadius: 30.0,
-                                          padding: 8.0,
-                                          showOnOff: true,
-                                          activeText: 'ON',
-                                          inactiveText: 'OFF',
-                                          onToggle: (val) {
-                                            setState(() {
-                                              if (models.objOtomatis.value
-                                                      .statusAktif ==
-                                                  true) {
-                                                if (models.objSatu.value
-                                                        .statusKeranAir ==
-                                                    true) {
-                                                  if (models.objSatu.value
-                                                          .sensorDigital! >=
-                                                      parameterMin) {
-                                                    if (models.objSatu.value
-                                                            .sensorDigital! <=
-                                                        parameterMax) {
-                                                      // TOMBOL OTOMATIS
-                                                    } else {
-                                                      // TOMBOL OTOMATIS
-                                                    }
-                                                  } else {
-                                                    // TOMBOL OTOMATIS
-                                                  }
-                                                } else {
-                                                  if (models.objSatu.value
-                                                          .sensorDigital! >=
-                                                      parameterMin) {
-                                                    if (models.objSatu.value
-                                                            .sensorDigital! <=
-                                                        parameterMax) {
-                                                      // TOMBOL OTOMATIS
-                                                    } else {
-                                                      // TOMBOL OTOMATIS
-                                                    }
-                                                  } else {
-                                                    // TOMBOL OTOMATIS
-                                                  }
-                                                }
-                                              } else {
-                                                if (models.objSatu.value
-                                                        .statusKeranAir ==
-                                                    true) {
-                                                  if (models.objSatu.value
-                                                          .sensorDigital! >=
-                                                      parameterMin) {
-                                                    if (models.objSatu.value
-                                                            .sensorDigital! <=
-                                                        parameterMax) {
-                                                      models.objSatu.value
-                                                          .statusKeranAir = val;
-                                                      databaseReference
-                                                          .child(
-                                                              'ProjectTugasAkhirArbi')
-                                                          .child('ObjSampel1')
-                                                          .update(
-                                                        {
-                                                          'StatusKeranAir':
-                                                              false,
-                                                        },
-                                                      );
-                                                    } else {
-                                                      models.objSatu.value
-                                                          .statusKeranAir = val;
-                                                      databaseReference
-                                                          .child(
-                                                              'ProjectTugasAkhirArbi')
-                                                          .child('ObjSampel1')
-                                                          .update(
-                                                        {
-                                                          'StatusKeranAir':
-                                                              false,
-                                                        },
-                                                      );
-                                                    }
-                                                  } else {
-                                                    models.objSatu.value
-                                                        .statusKeranAir = val;
-                                                    databaseReference
-                                                        .child(
-                                                            'ProjectTugasAkhirArbi')
-                                                        .child('ObjSampel1')
-                                                        .update(
-                                                      {
-                                                        'StatusKeranAir': false,
-                                                      },
-                                                    );
-                                                  }
-                                                } else {
-                                                  if (models.objSatu.value
-                                                          .sensorDigital! >=
-                                                      parameterMin) {
-                                                    if (models.objSatu.value
-                                                            .sensorDigital! <=
-                                                        parameterMax) {
-                                                      models.objSatu.value
-                                                          .statusKeranAir = val;
-                                                      databaseReference
-                                                          .child(
-                                                              'ProjectTugasAkhirArbi')
-                                                          .child('ObjSampel1')
-                                                          .update(
-                                                        {
-                                                          'StatusKeranAir':
-                                                              true,
-                                                        },
-                                                      );
-                                                    } else {
-                                                      models.objSatu.value
-                                                          .statusKeranAir = val;
-                                                      databaseReference
-                                                          .child(
-                                                              'ProjectTugasAkhirArbi')
-                                                          .child('ObjSampel1')
-                                                          .update(
-                                                        {
-                                                          'StatusKeranAir':
-                                                              true,
-                                                        },
-                                                      );
-                                                    }
-                                                  } else {
-                                                    models.objSatu.value
-                                                        .statusKeranAir = val;
-                                                    databaseReference
-                                                        .child(
-                                                            'ProjectTugasAkhirArbi')
-                                                        .child('ObjSampel1')
-                                                        .update(
-                                                      {
-                                                        'StatusKeranAir': true,
-                                                      },
-                                                    );
-                                                  }
-                                                }
-                                              }
-                                            });
-                                          },
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'SAMPEL 2',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 8.0),
-                                    child: Obx(
-                                      () {
-                                        return FlutterSwitch(
-                                          width: 90,
-                                          height: 40,
-                                          valueFontSize: 19,
-                                          toggleSize: 30,
-                                          value: models.objDua.value
-                                              .statusKeranAir as bool,
-                                          borderRadius: 30.0,
-                                          padding: 8.0,
-                                          showOnOff: true,
-                                          activeText: 'ON',
-                                          inactiveText: 'OFF',
-                                          onToggle: (val) {
-                                            setState(() {
-                                              if (models.objOtomatis.value
-                                                      .statusAktif ==
-                                                  true) {
-                                                if (models.objDua.value
-                                                        .statusKeranAir ==
-                                                    true) {
-                                                  if (models.objDua.value
-                                                          .sensorDigital! >=
-                                                      parameterMin) {
-                                                    if (models.objDua.value
-                                                            .sensorDigital! <=
-                                                        parameterMax) {
-                                                      // TOMBOL OTOMATIS
-                                                    } else {
-                                                      // TOMBOL OTOMATIS
-                                                    }
-                                                  } else {
-                                                    // TOMBOL OTOMATIS
-                                                  }
-                                                } else {
-                                                  if (models.objDua.value
-                                                          .sensorDigital! >=
-                                                      parameterMin) {
-                                                    if (models.objDua.value
-                                                            .sensorDigital! <=
-                                                        parameterMax) {
-                                                      // TOMBOL OTOMATIS
-                                                    } else {
-                                                      // TOMBOL OTOMATIS
-                                                    }
-                                                  } else {
-                                                    // TOMBOL OTOMATIS
-                                                  }
-                                                }
+                              Obx(
+                                () {
+                                  return FlutterSwitch(
+                                    width: 90,
+                                    height: 40,
+                                    valueFontSize: 20,
+                                    toggleSize: 30,
+                                    value: models.objDua.value.statusKeranAir
+                                        as bool,
+                                    borderRadius: 30.0,
+                                    padding: 8.0,
+                                    showOnOff: true,
+                                    activeText: 'ON',
+                                    inactiveText: 'OFF',
+                                    onToggle: (val) {
+                                      setState(() {
+                                        if (models.objOtomatis.value
+                                                .statusAktif ==
+                                            true) {
+                                          if (models.objDua.value
+                                                  .statusKeranAir ==
+                                              true) {
+                                            if (models.objDua.value
+                                                    .sensorDigital! >=
+                                                parameterMin) {
+                                              if (models.objDua.value
+                                                      .sensorDigital! <=
+                                                  parameterMax) {
+                                                // TOMBOL OTOMATIS
                                               } else {
-                                                if (models.objDua.value
-                                                        .statusKeranAir ==
-                                                    true) {
-                                                  if (models.objDua.value
-                                                          .sensorDigital! >=
-                                                      parameterMin) {
-                                                    if (models.objDua.value
-                                                            .sensorDigital! <=
-                                                        parameterMax) {
-                                                      models.objDua.value
-                                                          .statusKeranAir = val;
-                                                      databaseReference
-                                                          .child(
-                                                              'ProjectTugasAkhirArbi')
-                                                          .child('ObjSampel2')
-                                                          .update(
-                                                        {
-                                                          'StatusKeranAir':
-                                                              false,
-                                                        },
-                                                      );
-                                                    } else {
-                                                      models.objDua.value
-                                                          .statusKeranAir = val;
-                                                      databaseReference
-                                                          .child(
-                                                              'ProjectTugasAkhirArbi')
-                                                          .child('ObjSampel2')
-                                                          .update(
-                                                        {
-                                                          'StatusKeranAir':
-                                                              false,
-                                                        },
-                                                      );
-                                                    }
-                                                  } else {
-                                                    models.objDua.value
-                                                        .statusKeranAir = val;
-                                                    databaseReference
-                                                        .child(
-                                                            'ProjectTugasAkhirArbi')
-                                                        .child('ObjSampel2')
-                                                        .update(
-                                                      {
-                                                        'StatusKeranAir': false,
-                                                      },
-                                                    );
-                                                  }
-                                                } else {
-                                                  if (models.objDua.value
-                                                          .sensorDigital! >=
-                                                      parameterMin) {
-                                                    if (models.objDua.value
-                                                            .sensorDigital! <=
-                                                        parameterMax) {
-                                                      models.objDua.value
-                                                          .statusKeranAir = val;
-                                                      databaseReference
-                                                          .child(
-                                                              'ProjectTugasAkhirArbi')
-                                                          .child('ObjSampel2')
-                                                          .update(
-                                                        {
-                                                          'StatusKeranAir':
-                                                              true,
-                                                        },
-                                                      );
-                                                    } else {
-                                                      models.objDua.value
-                                                          .statusKeranAir = val;
-                                                      databaseReference
-                                                          .child(
-                                                              'ProjectTugasAkhirArbi')
-                                                          .child('ObjSampel2')
-                                                          .update(
-                                                        {
-                                                          'StatusKeranAir':
-                                                              true,
-                                                        },
-                                                      );
-                                                    }
-                                                  } else {
-                                                    models.objDua.value
-                                                        .statusKeranAir = val;
-                                                    databaseReference
-                                                        .child(
-                                                            'ProjectTugasAkhirArbi')
-                                                        .child('ObjSampel2')
-                                                        .update(
-                                                      {
-                                                        'StatusKeranAir': true,
-                                                      },
-                                                    );
-                                                  }
-                                                }
+                                                // TOMBOL OTOMATIS
                                               }
-                                            });
-                                          },
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ],
+                                            } else {
+                                              // TOMBOL OTOMATIS
+                                            }
+                                          } else {
+                                            if (models.objDua.value
+                                                    .sensorDigital! >=
+                                                parameterMin) {
+                                              if (models.objDua.value
+                                                      .sensorDigital! <=
+                                                  parameterMax) {
+                                                // TOMBOL OTOMATIS
+                                              } else {
+                                                // TOMBOL OTOMATIS
+                                              }
+                                            } else {
+                                              // TOMBOL OTOMATIS
+                                            }
+                                          }
+                                        } else {
+                                          if (models.objDua.value
+                                                  .statusKeranAir ==
+                                              true) {
+                                            if (models.objDua.value
+                                                    .sensorDigital! >=
+                                                parameterMin) {
+                                              if (models.objDua.value
+                                                      .sensorDigital! <=
+                                                  parameterMax) {
+                                                models.objDua.value
+                                                    .statusKeranAir = val;
+                                                databaseReference
+                                                    .child(
+                                                        'ProjectTugasAkhirArbi')
+                                                    .child('ObjSampel2')
+                                                    .update(
+                                                  {
+                                                    'StatusKeranAir': false,
+                                                  },
+                                                );
+                                              } else {
+                                                models.objDua.value
+                                                    .statusKeranAir = val;
+                                                databaseReference
+                                                    .child(
+                                                        'ProjectTugasAkhirArbi')
+                                                    .child('ObjSampel2')
+                                                    .update(
+                                                  {
+                                                    'StatusKeranAir': false,
+                                                  },
+                                                );
+                                              }
+                                            } else {
+                                              models.objDua.value
+                                                  .statusKeranAir = val;
+                                              databaseReference
+                                                  .child(
+                                                      'ProjectTugasAkhirArbi')
+                                                  .child('ObjSampel2')
+                                                  .update(
+                                                {
+                                                  'StatusKeranAir': false,
+                                                },
+                                              );
+                                            }
+                                          } else {
+                                            if (models.objDua.value
+                                                    .sensorDigital! >=
+                                                parameterMin) {
+                                              if (models.objDua.value
+                                                      .sensorDigital! <=
+                                                  parameterMax) {
+                                                models.objDua.value
+                                                    .statusKeranAir = val;
+                                                databaseReference
+                                                    .child(
+                                                        'ProjectTugasAkhirArbi')
+                                                    .child('ObjSampel2')
+                                                    .update(
+                                                  {
+                                                    'StatusKeranAir': true,
+                                                    'Waktu': formattedDate,
+                                                  },
+                                                );
+                                              } else {
+                                                models.objDua.value
+                                                    .statusKeranAir = val;
+                                                databaseReference
+                                                    .child(
+                                                        'ProjectTugasAkhirArbi')
+                                                    .child('ObjSampel2')
+                                                    .update(
+                                                  {
+                                                    'StatusKeranAir': true,
+                                                    'Waktu': formattedDate,
+                                                  },
+                                                );
+                                              }
+                                            } else {
+                                              models.objDua.value
+                                                  .statusKeranAir = val;
+                                              databaseReference
+                                                  .child(
+                                                      'ProjectTugasAkhirArbi')
+                                                  .child('ObjSampel2')
+                                                  .update(
+                                                {
+                                                  'StatusKeranAir': true,
+                                                  'Waktu': formattedDate,
+                                                },
+                                              );
+                                            }
+                                          }
+                                        }
+                                      });
+                                    },
+                                  );
+                                },
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),

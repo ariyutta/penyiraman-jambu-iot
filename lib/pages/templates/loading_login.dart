@@ -20,13 +20,13 @@ class _SplashLoginState extends State<SplashLogin> {
   void initState() {
     Future.delayed(
       Duration(
-        milliseconds: 1000,
+        milliseconds: 1500,
       ),
       () {
         Get.offAll(
           MyHome(emailUser: widget.emailInput),
           transition: Transition.fadeIn,
-          duration: Duration(milliseconds: 1000),
+          duration: Duration(milliseconds: 1500),
         );
       },
     );

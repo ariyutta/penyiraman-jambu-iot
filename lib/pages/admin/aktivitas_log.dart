@@ -14,60 +14,85 @@ class _DataLogState extends State<DataLog> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.fromLTRB(10, 230, 10, 10),
-      child: Card(
-        elevation: 5,
-        child: ListView.separated(
-          itemCount: 16,
-          itemBuilder: (context, int index) {
-            return ListTile(
-              // leading: Icon(
-              //   Icons.list,
-              //   size: 50,
-              // ),
-              title: Row(
-                children: [
-                  Icon(Icons.grass, size: 30, color: Colors.green),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: Text("Sampel $index"),
-                  ),
-                ],
+      child: ListView.separated(
+        itemCount: 11,
+        itemBuilder: (context, int index) {
+          return Card(
+            elevation: 5,
+            child: ListTile(
+              title: Card(
+                elevation: 1,
+                child: Row(
+                  children: [
+                    Icon(Icons.grass, size: 30, color: Colors.green),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Text(
+                        "Sampel $index",
+                        style: TextStyle(fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              subtitle: Row(
-                children: [
-                  Icon(Icons.timelapse, size: 30),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: Text('13 Febuari 2023 | 09:34:23 WIB'),
-                  ),
-                ],
+              subtitle: Card(
+                elevation: 1,
+                child: Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.alarm, size: 30),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 15),
+                              child: Text('13/02/2023 | 09:34:23 WIB'),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(Icons.tungsten_outlined, size: 30),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 15),
+                              child: Text('Kelembaban : 78%'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
               trailing: Column(
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 4.0),
                     child: Icon(
-                      Icons.water_drop_rounded,
+                      Icons.phonelink_outlined,
                       size: 30,
                       color: Colors.blue,
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 3.0),
-                    child: Text('76%'),
+                    child: Text(
+                      'Keran Aktif',
+                    ),
                   ),
                 ],
               ),
-            );
-          },
-          separatorBuilder: (context, index) {
-            return Divider(
-              height: 1,
-              thickness: 1,
-              color: Color.fromARGB(255, 10, 85, 126),
-            );
-          },
-        ),
+            ),
+          );
+        },
+        separatorBuilder: (context, index) {
+          return Divider(
+            height: 0,
+            // thickness: 1,
+            // color: Color.fromARGB(255, 10, 85, 126),
+          );
+        },
       ),
     );
   }

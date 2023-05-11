@@ -19,13 +19,13 @@ class _SplashLogoutState extends State<SplashLogout> {
 
     Future.delayed(
       Duration(
-        milliseconds: 1000,
+        milliseconds: 1500,
       ),
       () {
         Get.offAll(
           LoginPages(),
           transition: Transition.fadeIn,
-          duration: Duration(milliseconds: 1000),
+          duration: Duration(milliseconds: 1500),
         );
       },
     );
