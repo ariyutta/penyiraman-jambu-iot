@@ -41,7 +41,11 @@ class _DashboardState extends State<Dashboard> {
                     width: double.infinity,
                     child: Padding(
                       padding: const EdgeInsets.all(13.0),
-                      child: statusPompaAir(),
+                      child: Column(
+                        children: [
+                          statusPompaAir(),
+                        ],
+                      ),
                     ),
                   );
                 },

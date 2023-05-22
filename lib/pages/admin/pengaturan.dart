@@ -149,6 +149,7 @@ class _PengaturanState extends State<Pengaturan> {
                                                   'StatusAktif': true,
                                                 },
                                               );
+                                              otomatisActive();
                                             } else {
                                               databaseReference
                                                   .child(
@@ -159,6 +160,7 @@ class _PengaturanState extends State<Pengaturan> {
                                                   'StatusAktif': false,
                                                 },
                                               );
+                                              otomatisNonActive();
                                             }
                                           });
                                         },
@@ -272,6 +274,7 @@ class _PengaturanState extends State<Pengaturan> {
                                                     'StatusKeranAir': false,
                                                   },
                                                 );
+                                                sampelSatuNonActive();
                                               } else {
                                                 models.objSatu.value
                                                     .statusKeranAir = val;
@@ -284,6 +287,7 @@ class _PengaturanState extends State<Pengaturan> {
                                                     'StatusKeranAir': false,
                                                   },
                                                 );
+                                                sampelSatuNonActive();
                                               }
                                             } else {
                                               models.objSatu.value
@@ -297,6 +301,7 @@ class _PengaturanState extends State<Pengaturan> {
                                                   'StatusKeranAir': false,
                                                 },
                                               );
+                                              sampelSatuNonActive();
                                             }
                                           } else {
                                             if (models.objSatu.value
@@ -317,6 +322,7 @@ class _PengaturanState extends State<Pengaturan> {
                                                     'Waktu': formattedDate,
                                                   },
                                                 );
+                                                sampelSatuActive();
                                               } else {
                                                 models.objSatu.value
                                                     .statusKeranAir = val;
@@ -330,6 +336,7 @@ class _PengaturanState extends State<Pengaturan> {
                                                     'Waktu': formattedDate,
                                                   },
                                                 );
+                                                sampelSatuActive();
                                               }
                                             } else {
                                               models.objSatu.value
@@ -344,6 +351,7 @@ class _PengaturanState extends State<Pengaturan> {
                                                   'Waktu': formattedDate,
                                                 },
                                               );
+                                              sampelSatuActive();
                                             }
                                           }
                                         }
@@ -448,6 +456,7 @@ class _PengaturanState extends State<Pengaturan> {
                                                     'StatusKeranAir': false,
                                                   },
                                                 );
+                                                sampelDuaNonActive();
                                               } else {
                                                 models.objDua.value
                                                     .statusKeranAir = val;
@@ -460,6 +469,7 @@ class _PengaturanState extends State<Pengaturan> {
                                                     'StatusKeranAir': false,
                                                   },
                                                 );
+                                                sampelDuaNonActive();
                                               }
                                             } else {
                                               models.objDua.value
@@ -473,6 +483,7 @@ class _PengaturanState extends State<Pengaturan> {
                                                   'StatusKeranAir': false,
                                                 },
                                               );
+                                              sampelDuaNonActive();
                                             }
                                           } else {
                                             if (models.objDua.value
@@ -493,6 +504,7 @@ class _PengaturanState extends State<Pengaturan> {
                                                     'Waktu': formattedDate,
                                                   },
                                                 );
+                                                sampelDuaActive();
                                               } else {
                                                 models.objDua.value
                                                     .statusKeranAir = val;
@@ -506,6 +518,7 @@ class _PengaturanState extends State<Pengaturan> {
                                                     'Waktu': formattedDate,
                                                   },
                                                 );
+                                                sampelDuaActive();
                                               }
                                             } else {
                                               models.objDua.value
@@ -520,6 +533,7 @@ class _PengaturanState extends State<Pengaturan> {
                                                   'Waktu': formattedDate,
                                                 },
                                               );
+                                              sampelDuaActive();
                                             }
                                           }
                                         }
@@ -564,6 +578,156 @@ class _PengaturanState extends State<Pengaturan> {
             ),
           )
         ],
+      ),
+    );
+  }
+
+  void otomatisActive() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        margin: EdgeInsets.symmetric(
+          vertical: 20.0,
+          horizontal: MediaQuery.of(context).size.width * 0.22,
+        ),
+        elevation: 5.0,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(35.0),
+        ),
+        content: Wrap(
+          children: const [
+            Center(
+              child: Text(
+                'Kendali Otomatis Diaktifkan',
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void otomatisNonActive() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        margin: EdgeInsets.symmetric(
+          vertical: 20.0,
+          horizontal: MediaQuery.of(context).size.width * 0.19,
+        ),
+        elevation: 5.0,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(35.0),
+        ),
+        content: Wrap(
+          children: const [
+            Center(
+              child: Text(
+                'Kendali Otomatis Dinonaktifkan',
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void sampelSatuActive() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        margin: EdgeInsets.symmetric(
+          vertical: 20.0,
+          horizontal: MediaQuery.of(context).size.width * 0.19,
+        ),
+        elevation: 5.0,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(35.0),
+        ),
+        content: Wrap(
+          children: const [
+            Center(
+              child: Text(
+                'Keran Air Sampel 1 Diaktifkan',
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void sampelDuaActive() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        margin: EdgeInsets.symmetric(
+          vertical: 20.0,
+          horizontal: MediaQuery.of(context).size.width * 0.19,
+        ),
+        elevation: 5.0,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(35.0),
+        ),
+        content: Wrap(
+          children: const [
+            Center(
+              child: Text(
+                'Keran Air Sampel 2 Diaktifkan',
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void sampelSatuNonActive() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        margin: EdgeInsets.symmetric(
+          vertical: 20.0,
+          horizontal: MediaQuery.of(context).size.width * 0.17,
+        ),
+        elevation: 5.0,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(35.0),
+        ),
+        content: Wrap(
+          children: const [
+            Center(
+              child: Text(
+                'Keran Air Sampel 1 Dinonaktifkan',
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void sampelDuaNonActive() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        margin: EdgeInsets.symmetric(
+          vertical: 20.0,
+          horizontal: MediaQuery.of(context).size.width * 0.17,
+        ),
+        elevation: 5.0,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(35.0),
+        ),
+        content: Wrap(
+          children: const [
+            Center(
+              child: Text(
+                'Keran Air Sampel 2 Dinonaktifkan',
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

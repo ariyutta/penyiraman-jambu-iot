@@ -15,13 +15,24 @@ class HomeController extends GetxController {
       //add duration of press gap
       ctime = now;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
+          margin: EdgeInsets.symmetric(
+            vertical: 20.0,
+            horizontal: MediaQuery.of(context).size.width * 0.15,
+          ),
+          elevation: 5.0,
           behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.all(65.0),
-          content: Center(
-            child: Text(
-              'Klik lagi untuk menutup aplikasi',
-            ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(35.0),
+          ),
+          content: Wrap(
+            children: const [
+              Center(
+                child: Text(
+                  'Klik lagi untuk menutup aplikasi',
+                ),
+              ),
+            ],
           ),
         ),
       ); //scaffold message, you can show Toast message too.
