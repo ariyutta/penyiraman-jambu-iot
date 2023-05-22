@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_null_comparison, avoid_print, dead_code
+// ignore_for_file: unnecessary_null_comparison, avoid_print, dead_code, unused_local_variable, file_names
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
@@ -25,13 +25,23 @@ class DataLogController extends GetxController {
       refDB.onValue.listen(
         (event) {
           var snapshot = event.snapshot.value;
-          List<dynamic> listData = snapshot as List;
-          if (kDebugMode) {
-            print('hello');
-          }
-          if (kDebugMode) {
-            print('ini snapshot ...  $snapshot');
-          }
+          Map<String, dynamic> historyMap = {};
+
+          (snapshot as Map).forEach((key, value) {
+            String stringKey = key.toString();
+
+            Map<String, dynamic> entry = {};
+            value.forEach((subKey, subValue) {
+              String stringSubKey = subKey.toString();
+              dynamic dynamicValue = subValue;
+
+              entry[stringSubKey] = dynamicValue;
+            });
+
+            historyMap[stringKey] = entry;
+          });
+
+          List<dynamic> listData = historyMap.values.toList();
 
           if (snapshot != null) {
             for (var list in listData) {
@@ -55,7 +65,7 @@ class DataLogController extends GetxController {
       );
 
       isHistory(true);
-      print(listHistory);
+
       if (isHistory.isTrue) {
         statusHistory.isTrue;
       }
@@ -69,5 +79,11 @@ class DataLogController extends GetxController {
   void onInit() {
     historyData();
     super.onInit();
+  }
+
+  @override
+  void dispose() {
+    historyData();
+    super.dispose();
   }
 }

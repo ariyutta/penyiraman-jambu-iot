@@ -1,10 +1,10 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations, non_constant_identifier_names, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations, non_constant_identifier_names, prefer_const_literals_to_create_immutables, unnecessary_new
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:penyiraman_jambu_iot/controllers/HomeController.dart';
-import 'package:penyiraman_jambu_iot/pages/admin/dashboard.dart';
 import 'package:penyiraman_jambu_iot/pages/admin/aktivitas_log.dart';
+import 'package:penyiraman_jambu_iot/pages/admin/dashboard.dart';
 import 'package:penyiraman_jambu_iot/pages/admin/pengaturan.dart';
 
 class MyHome extends StatefulWidget {

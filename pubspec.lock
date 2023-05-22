@@ -525,6 +525,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "21.1.35"
+  tabbar:
+    dependency: "direct main"
+    description:
+      name: tabbar
+      sha256: a25ede9a07c88d1afa3381c873cf17f99bf8db0b649b43e0dc10956c51c0a679
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.1"
   term_glyph:
     dependency: transitive
     description:

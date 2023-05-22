@@ -85,7 +85,17 @@ class _PengaturanState extends State<Pengaturan> {
               padding: const EdgeInsets.only(top: 15.0),
               child: SingleChildScrollView(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Text(
+                        'KONFIGURASI',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(top: 0.0),
                       child: Card(
@@ -159,6 +169,15 @@ class _PengaturanState extends State<Pengaturan> {
                               ),
                             ],
                           ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Text(
+                        'KERAN AIR',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
